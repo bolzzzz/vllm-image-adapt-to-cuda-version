@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.4.1-runtime-ubuntu22.04
+FROM nvidia/cuda:12.6.3-runtime-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -24,8 +24,8 @@ ENV UV_SYSTEM_PYTHON=1 \
     UV_LINK_MODE=copy \
     UV_PROJECT_ENVIRONMENT=/usr/local
 
-# Auto-select torch backend from host/GPU environment while installing vLLM.
-RUN uv pip install vllm==0.15.1 --torch-backend=auto
+# Force CUDA-enabled torch wheels for vLLM.
+RUN uv pip install vllm==0.15.1 --torch-backend=cu126
 
 COPY entrypoint.sh /entrypoint.sh
 COPY template/ /app/template/
