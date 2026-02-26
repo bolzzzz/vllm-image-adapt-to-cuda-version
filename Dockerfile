@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y ca-certificates build-essential && rm -
 COPY --from=uv /uv /usr/local/bin/uv
 
 ENV UV_LINK_MODE=copy \
-    UV_VENV_CLEAR=1
+    UV_VENV_CLEAR=1 \
+    UV_CACHE_DIR=/workspace/.cache/uv
 
 WORKDIR /workspace
 
