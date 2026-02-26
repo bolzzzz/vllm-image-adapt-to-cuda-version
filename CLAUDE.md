@@ -29,7 +29,7 @@ Scripts are baked into the image at `/scripts/` and are `chmod +x`. They are the
 |---|---|---|---|
 | `start_embed.sh` | Qwen3-VL-Embedding-2B | 8000 | 0.9 |
 | `start_rerank.sh` | Qwen3-VL-Reranker-2B | 8001 | 0.9 |
-| `start_embed_rerank.sh` | both | 8000 + 8001 | embed 0.45, rerank 0.50 |
+| `start_embed_rerank.sh` | both | 8000 + 8001 | embed 0.40, rerank 0.50 |
 
 Each script: creates a venv at `/workspace/.venv`, installs vllm, then launches the server(s). The dual script shares one venv and runs both processes in parallel with `wait -n`.
 
