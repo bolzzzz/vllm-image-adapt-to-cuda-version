@@ -15,7 +15,6 @@ exec vllm serve Qwen/Qwen3-VL-Embedding-2B \
   --runner pooling \
   --max-model-len 8192 \
   --dtype auto \
-
   --hf-overrides '{"matryoshka_dimensions":[1024]}' \
   --port 8000 \
   --gpu-memory-utilization 0.9

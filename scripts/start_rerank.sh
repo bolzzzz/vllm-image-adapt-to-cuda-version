@@ -16,7 +16,6 @@ exec vllm serve Qwen/Qwen3-VL-Reranker-2B \
   --dtype auto \
   --max-model-len 16384 \
   --gpu-memory-utilization 0.9 \
-
   --chat-template /template/qwen3_vl_reranker.jinja \
   --hf-overrides '{"architectures": ["Qwen3VLForSequenceClassification"], "classifier_from_token": ["no", "yes"], "is_original_qwen3_reranker": true}' \
   --port 8001
