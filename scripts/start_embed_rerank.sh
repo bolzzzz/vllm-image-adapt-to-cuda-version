@@ -41,4 +41,16 @@ vllm serve Qwen/Qwen3-VL-Reranker-2B \
   --port 8001 &
 rerank_pid=$!
 
+echo "[start_embed_rerank] Waiting for Reranker API on port 8001..."
+until bash -c "exec 3<>/dev/tcp/127.0.0.1/8001" 2>/dev/null; do
+  if ! kill -0 "$rerank_pid" 2>/dev/null; then
+    echo "[start_embed_rerank] Reranker process exited before becoming ready."
+    wait "$rerank_pid"
+    exit 1
+  fi
+  sleep 2
+done
+
+echo "[start_embed_rerank] Ready: Embedding (8000) and Reranker (8001) are both up."
+
 wait -n "$embed_pid" "$rerank_pid"
