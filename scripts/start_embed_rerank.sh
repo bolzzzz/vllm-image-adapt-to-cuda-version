@@ -34,8 +34,8 @@ echo "[start_embed_rerank] Starting Qwen3-VL-Reranker-2B on port 8001..."
 vllm serve Qwen/Qwen3-VL-Reranker-2B \
   --runner pooling \
   --dtype auto \
-  --max-model-len 1536 \
-  --gpu-memory-utilization 0.50 \
+  --max-model-len 768 \
+  --gpu-memory-utilization 0.45 \
   --chat-template /template/qwen3_vl_reranker.jinja \
   --hf-overrides '{"architectures": ["Qwen3VLForSequenceClassification"], "classifier_from_token": ["no", "yes"], "is_original_qwen3_reranker": true}' \
   --port 8001 &
