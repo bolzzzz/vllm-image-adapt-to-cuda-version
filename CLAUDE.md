@@ -31,7 +31,7 @@ Scripts are baked into the image at `/scripts/` and are `chmod +x`. They are the
 | `start_rerank.sh` | Qwen3-VL-Reranker-2B | 8001 | 0.9 |
 | `start_embed_rerank.sh` | both | 8000 + 8001 | embed 0.40, rerank 0.50 |
 
-Each script: creates a venv at `/workspace/.venv`, installs vllm, then launches the server(s). The dual script shares one venv and runs both processes in parallel with `wait -n`.
+Each script: creates a venv at `/workspace/.venv`, installs vllm, then launches the server(s). The dual script shares one venv, starts embed first, then starts rerank after embed is ready.
 
 **RunPod Start Command**: use the absolute path, e.g. `/scripts/start_embed_rerank.sh`
 
@@ -42,3 +42,4 @@ The three `.yml` files in the repo root are local orchestration wrappers that ca
 ### Sync Rule
 
 `scripts/start_*.sh` are the single source of truth for model arguments and install steps. `docker-compose*.yml` should only reference those scripts (no duplicated long `vllm serve ...` argument blocks).
+When changing any `max-model-len` value in one startup script, update the matching model's `max-model-len` in the other startup scripts in the same commit.
