@@ -29,7 +29,7 @@ Scripts are baked into the image at `/scripts/` and are `chmod +x`. They are the
 |---|---|---|---|
 | `start_embed.sh` | Qwen3-VL-Embedding-2B | 8000 | 0.9 |
 | `start_rerank.sh` | Qwen3-VL-Reranker-2B | 8001 | 0.9 |
-| `start_embed_rerank.sh` | both | 8000 + 8001 | 0.45 each |
+| `start_embed_rerank.sh` | both | 8000 + 8001 | embed 0.45, rerank 0.50 |
 
 Each script: creates a venv at `/workspace/.venv`, installs vllm, then launches the server(s). The dual script shares one venv and runs both processes in parallel with `wait -n`.
 
@@ -37,4 +37,8 @@ Each script: creates a venv at `/workspace/.venv`, installs vllm, then launches 
 
 ## Docker Compose Files
 
-The three `.yml` files in the repo root are the original compose-based references that the scripts were derived from. They are not used for deployment — RunPod runs a single container directly.
+The three `.yml` files in the repo root are local orchestration wrappers that call `/scripts/start_*.sh` directly. They are not used for deployment — RunPod runs a single container directly.
+
+### Sync Rule
+
+`scripts/start_*.sh` are the single source of truth for model arguments and install steps. `docker-compose*.yml` should only reference those scripts (no duplicated long `vllm serve ...` argument blocks).

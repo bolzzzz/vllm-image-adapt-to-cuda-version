@@ -8,7 +8,7 @@ uv venv --python 3.12 --seed
 source .venv/bin/activate
 
 echo "[start_embed] Installing vllm..."
-uv pip install vllm --torch-backend=auto
+uv pip install vllm torch-c-dlpack-ext --torch-backend=auto
 
 echo "[start_embed] Starting Qwen3-VL-Embedding-2B on port 8000..."
 exec vllm serve Qwen/Qwen3-VL-Embedding-2B \
