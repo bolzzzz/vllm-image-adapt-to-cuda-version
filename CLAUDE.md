@@ -10,14 +10,15 @@ This repo builds and publishes a Docker image (`bolz213/ubuntu-uv`) that provide
 
 - **Base**: `ubuntu:22.04`
 - **uv**: installed via multi-stage copy from `ghcr.io/astral-sh/uv:<version>` — do NOT use the `curl | sh` install method
-- **Tag convention**: `ubuntu22.04-uv<uv-version>` (e.g. `ubuntu22.04-uv0.10.6`) plus a floating `ubuntu22.04-uv` tag
+- **Tag convention**: `ubuntu22.04-uv<uv-version>` (e.g. `ubuntu22.04-uv0.10.6`) plus floating tags `ubuntu22.04-uv` and `latest`
 
 ## Build & Push
 
 ```bash
-docker build -t bolz213/ubuntu-uv:ubuntu22.04-uv<VERSION> -t bolz213/ubuntu-uv:ubuntu22.04-uv .
+docker build -t bolz213/ubuntu-uv:ubuntu22.04-uv<VERSION> -t bolz213/ubuntu-uv:ubuntu22.04-uv -t bolz213/ubuntu-uv:latest .
 docker push bolz213/ubuntu-uv:ubuntu22.04-uv<VERSION>
 docker push bolz213/ubuntu-uv:ubuntu22.04-uv
+docker push bolz213/ubuntu-uv:latest
 ```
 
 ## Scripts
