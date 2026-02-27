@@ -1,0 +1,16 @@
+services:
+  vllm-document-parser:
+    image: bolz213/ubuntu-uv:ubuntu22.04-uv
+    container_name: vllm-document-parser
+    gpus: all
+    ipc: host
+    command: ["/scripts/start_document_parser.sh"]
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
