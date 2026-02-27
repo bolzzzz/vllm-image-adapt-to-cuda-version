@@ -16,4 +16,4 @@ exec vllm serve markmywords-au/document_parser_grpo_v1 \
   --port 8000 \
   --enable-lora \
   --lora-modules page_rotation=markmywords-au/document_parser-page_rotation \
-  --gpu-memory-utilization 0.25
+  --gpu-memory-utilization 0.9
