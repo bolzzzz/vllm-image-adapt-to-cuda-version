@@ -7,8 +7,8 @@ echo "[start_embed_rerank] Creating venv..."
 uv venv --python 3.12 --seed
 source .venv/bin/activate
 
-echo "[start_embed_rerank] Installing vllm..."
-uv pip install vllm torch-c-dlpack-ext --torch-backend=auto
+echo "[start_embed_rerank] Installing vllm==0.16.0..."
+uv pip install "vllm==0.16.0" torch-c-dlpack-ext --torch-backend=auto
 
 echo "[start_embed_rerank] Starting Qwen3-VL-Embedding-2B on port 8000..."
 vllm serve Qwen/Qwen3-VL-Embedding-2B \

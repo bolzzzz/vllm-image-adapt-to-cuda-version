@@ -1,6 +1,6 @@
 services:
   vllm-embed:
-    image: bolz213/ubuntu-uv:ubuntu22.04-uv
+    image: bolz213/ubuntu-uv:ubuntu22.04-uv0.10.6-vllm0.16.0
     container_name: vllm-embed
     gpus: all
     ipc: host
