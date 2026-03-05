@@ -17,7 +17,7 @@ vllm serve Qwen/Qwen3-VL-Embedding-2B \
   --dtype auto \
   --hf-overrides '{"matryoshka_dimensions":[1024]}' \
   --port 8000 \
-  --gpu-memory-utilization 0.35 &
+  --gpu-memory-utilization 0.40 &
 embed_pid=$!
 
 echo "[start_embed_rerank] Waiting for Embedding API on port 8000..."
