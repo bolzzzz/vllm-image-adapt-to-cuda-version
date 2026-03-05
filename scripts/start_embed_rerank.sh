@@ -17,7 +17,7 @@ vllm serve Qwen/Qwen3-VL-Embedding-2B \
   --dtype auto \
   --hf-overrides '{"matryoshka_dimensions":[1024]}' \
   --port 8000 \
-  --gpu-memory-utilization 0.40 &
+  --gpu-memory-utilization 0.35 &
 embed_pid=$!
 
 echo "[start_embed_rerank] Waiting for Embedding API on port 8000..."
@@ -35,7 +35,7 @@ vllm serve Qwen/Qwen3-VL-Reranker-2B \
   --runner pooling \
   --dtype auto \
   --max-model-len 768 \
-  --gpu-memory-utilization 0.45 \
+  --gpu-memory-utilization 0.35 \
   --chat-template /template/qwen3_vl_reranker.jinja \
   --hf-overrides '{"architectures": ["Qwen3VLForSequenceClassification"], "classifier_from_token": ["no", "yes"], "is_original_qwen3_reranker": true}' \
   --port 8001 &
